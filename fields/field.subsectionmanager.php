@@ -122,7 +122,7 @@
 		/**
 		 * @see http://symphony-cms.com/learn/api/2.3/toolkit/field/#displaySettingsPanel
 		 */
-		function displaySettingsPanel(&$wrapper, $errors=null) {
+		function displaySettingsPanel(XMLElement &$wrapper, $errors = null) {
 
 			// Basics
 			parent::displaySettingsPanel($wrapper, $errors);
