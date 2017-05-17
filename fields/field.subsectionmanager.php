@@ -355,7 +355,7 @@
 		/**
 		 * @see http://symphony-cms.com/learn/api/2.3/toolkit/field/#checkFields
 		 */
-		function checkFields(&$errors, $checkForDuplicates=true) {
+		function checkFields(array &$errors, $checkForDuplicates=true) {
 
 			if(!is_array($errors)) $errors = array();
 
@@ -522,7 +522,7 @@
 		 *
 		 * @see http://symphony-cms.com/learn/api/2.3/toolkit/field/#displayPublishPanel
 		 */
-		function displayPublishPanel(&$wrapper, $data=null, $flagWithError=null, $fieldnamePrefix=null, $fieldnamePostfix=null, $entry_id=null) {
+		function displayPublishPanel(XMLElement &$wrapper, $data = null, $flagWithError = null, $fieldnamePrefix = null, $fieldnamePostfix = null, $entry_id = null) {
 			if(!is_array($data['relation_id'])) $data['relation_id'] = array($data['relation_id']);
 
 			// Houston, we have problem: we've been called out of context!
@@ -673,7 +673,7 @@
 		 *
 		 * @see http://symphony-cms.com/learn/api/2.3/toolkit/field/#appendFormattedElement
 		 */
-		public function appendFormattedElement(&$wrapper, $data, $encode = false, $mode = null) {
+		public function appendFormattedElement(XMLElement &$wrapper, $data, $encode = false, $mode = null, $entry_id = NULL) {
 			static $done = array();
 
 			// Unify data
@@ -777,7 +777,7 @@
 		/**
 		 * @see http://symphony-cms.com/learn/api/2.3/toolkit/field/#prepareTableValue
 		 */
-		function prepareTableValue($data, XMLElement $link=null) {
+		function prepareTableValue($data, XMLElement $link = null, $entry_id = NULL) {
 			if(empty($data['relation_id'])) return null;
 
 			// Single select
@@ -822,7 +822,7 @@
 		/**
 		 * @see http://symphony-cms.com/learn/api/2.3/toolkit/field/#getParameterPoolValue
 		 */
-		public function getParameterPoolValue($data) {
+		public function getParameterPoolValue(array $data, $entry_id = NULL) {
 			return $data['relation_id'];
 		}
 
@@ -865,7 +865,7 @@
 		/**
 		 * @see http://symphony-cms.com/learn/api/2.3/toolkit/field/#displayDatasourceFilterPanel
 		 */
-		function displayDatasourceFilterPanel(&$wrapper, $data=null, $errors=null, $fieldnamePrefix=null, $fieldnamePostfix=null) {
+		function displayDatasourceFilterPanel(XMLElement &$wrapper, $data = null, $errors = null, $fieldnamePrefix = null, $fieldnamePostfix = null) {
 			parent::displayDatasourceFilterPanel($wrapper, $data, $errors, $fieldnamePrefix, $fieldnamePostfix);
 
 			$text = new XMLElement('p', __('Use comma separated list of entry ids that has to be associated with filtered entries, e.g., "23, 45, 691" or "not: 23, 45, 691".'), array('class' => 'help') );
